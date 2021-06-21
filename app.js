@@ -49,7 +49,7 @@ tvSearchForm.addEventListener('submit', async e => {
   const searchTerm = tvSearchForm.elements.tvQuery.value;
   const config = { params: { q: searchTerm } };
   clearImgs();
-  const res = await axios.get(`http://api.tvmaze.com/search/shows`, config);
+  const res = await axios.get(`https://api.tvmaze.com/search/shows`, config);
   showImages(res.data);
   tvSearchForm.elements.tvQuery.value = null;
 })
@@ -70,35 +70,4 @@ const clearImgs = () => {
     tvShowContainer.textContent = null;
   }
 }
-
-//Example of constructor (old way)
-function Person (first, last, race, sexuality) {
-  this.firstName = first,
-  this.lastName = last,
-  this.race = race,
-  this.sexuality = sexuality 
-}
-
-//Factory Function example
-
-function makeColor(r,g,b){
-  //factory makes us an object
-  const color = {};
-  color.r = r;
-  color.g = g;
-  color.b = b;
-  color.rgb = function () {
-    //the this refers to the color object
-    const {r, g, b} = this;
-    return `rgb(${r}, ${g}, ${b});`
-  }
-  color.hex = function(){
-    const {r, g, b} = this;
-    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  }
-  //and returns it at the end
-  return color;
-}
-
-const firstColor = makeColor(8,35,231);
 
